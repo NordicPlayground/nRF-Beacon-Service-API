@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">nRF Beacon Service Example</string>
+    <string name="info">See LogCat for events</string>
+
+</resources>
