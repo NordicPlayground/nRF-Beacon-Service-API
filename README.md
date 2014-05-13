@@ -1,18 +1,18 @@
 nRF-Beacon-Service-API
 ======================
 
-The public library with nRF Beacon Service API. Allows applications to register for iBeacon monitoring and ranging. 
+The public library with nRF Beacon Service API allows applications to register for Nordic Beacons monitoring and ranging.
 
-The nRF Beacon Service has been designed to work like Location Core from iOS on Android. It operates as a Android service and scans periodically for registered iBeacons. The service is started when beacon region is being registered for passive monitoring or an application binds to it.
+The nRF Beacon Service has been designed to work like Location Core from iOS on Android. It operates as an Android service and scans periodically for registered Beacons. The service starts when beacon region is being registered for passive monitoring or when an application binds to it.
 
 ### Application
-The nRF Beacon Service application may be downloaded from the Google Play: https://play.google.com/store/apps/details?id=no.nordicsemi.android.beacon.service. The library provides API to allow 3rd party applications use the service which may save a lot of battery.
+The nRF Beacon Service application may be downloaded from the Google Play: https://play.google.com/store/apps/details?id=no.nordicsemi.android.beacon.service.  The library provides API to allow 3rd party applications to use the service which may save a lot of battery.
 
 ### Scanning modes
 There are two ways of registering for regions: passive and active. 
 
 * The **passive** way works when the registering application is not in an active state. When going into background it may register a region with a notification that will be shown if region will be entered. Only region monitoring (enter/exit events) is supported in this mode. Scanning in passive mode is performed every 15 seconds for 1 second to save the battery. Passive (background) scanning may be disabled by user on the Settings screen.
-* The **active** approach uses binding to the service. It allows to both monitor (enter/exit events) and range regions. With a use os _BeaconServiceConnection_ application may register listeners: _BeaconsListener_ and _RegionListener_. The fist one is notified every second about all beacons in range mathing the registered regions. The later one gets in-app event when region is entered or exited. Active mode works even if Background scanning has been disabled in options.
+* The **active** approach uses binding to the service. It allows to both monitor (enter/exit events) and range regions. With a use of _BeaconServiceConnection_ application may register listeners: _BeaconsListener_ and _RegionListener_. The fist one is notified every second about all beacons in range matching the registered regions. The later one gets in-app event when region is entered or exited. Active mode works even if Background scanning has been disabled in options.
 
 User is always notified when service is running in the Notification Bar.
 
