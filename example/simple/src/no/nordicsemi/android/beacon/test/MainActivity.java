@@ -7,11 +7,10 @@ import no.nordicsemi.android.beacon.BeaconRegion;
 import no.nordicsemi.android.beacon.BeaconServiceConnection;
 import no.nordicsemi.android.beacon.ServiceProxy;
 import android.app.Activity;
-import android.app.Notification;
 import android.app.PendingIntent;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
 import android.util.Log;
 
 public class MainActivity extends Activity {
@@ -48,7 +47,7 @@ public class MainActivity extends Activity {
 			Log.v(TAG, "Service connected");
 			startMonitoringForRegion(mAnyUuid, mRegionListener);
 			startRangingBeaconsInRegion(mMyUuid, mBeaconsListener);
-			startRangingBeaconsInRegion(mMyUuid, 5, mBeaconsListener);
+			startRangingBeaconsInRegion(mMyUuid, 65, mBeaconsListener);
 			startRangingBeaconsInRegion(mAnyUuid, mBeaconsListener);
 		}
 
@@ -83,11 +82,11 @@ public class MainActivity extends Activity {
 		// Create a pending intent
 		final PendingIntent pendingIntent = PendingIntent.getActivity(this, 1, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 		// Create and configure the notification
-		final Notification.Builder builder = new Notification.Builder(this); // the notification icon (small icon) will be overwritten by the BeaconService.
-		builder.setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher)).setContentTitle("iBeacon is in range!").setContentText("Click to open app.");
+		final NotificationCompat.Builder builder = new NotificationCompat.Builder(this); // the notification icon (small icon) will be overwritten by the BeaconService.
+		builder.setSmallIcon(R.drawable.stat_sys_place).setContentTitle("Beacon is in range!").setContentText("Click to open app.");
 		builder.setAutoCancel(true).setOnlyAlertOnce(true).setContentIntent(pendingIntent);
 		// Start monitoring for the region
-		ServiceProxy.startMonitoringForRegion(this, mMyUuid, builder.build());
+		ServiceProxy.startMonitoringForRegion(this, mMyUuid, 65, 55, builder.build());
 
 		mConnection.stopMonitoringForRegion(mRegionListener);
 		mConnection.stopRangingBeaconsInRegion(mBeaconsListener);
